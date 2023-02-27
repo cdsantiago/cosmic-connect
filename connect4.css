@@ -1,0 +1,121 @@
+html,
+body {
+  font-size: 16px;
+  font-family: "aptly", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  background-color: rgb(155, 222, 255);
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#title-text {
+  position: absolute;
+  top: 500px;
+
+  display: flex;
+  flex-direction: row;
+  z-index: 1000;
+}
+
+#title-text h1 {
+  margin-bottom: 0;
+  font-size: 5rem;
+}
+
+#title-text cite,
+q {
+  display: inline;
+  align-self: flex-end;
+}
+
+#title-text cite {
+  font-weight: lighter;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column-reverse;
+}
+#game-board {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(248, 243, 97);
+  position: relative;
+  top: -51px;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.616);
+  padding: 13px;
+  border-radius: 25px;
+}
+#game-board td {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  padding: 0;
+  margin: 6px;
+  background-color: white;
+}
+
+#column-top td {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  position: relative;
+  top: -60px;
+  padding: 0;
+  margin: 0 6px;
+}
+
+#column-top td::before {
+  content: url(arrow-down.svg);
+  display: inline-block;
+  position: relative;
+  left: 6px;
+  top: 6px;
+}
+
+.piece {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.p1 {
+  background-color: #e507ab;
+  transition: all 200ms ease-in;
+}
+
+.p1::before {
+  content: url(star.svg);
+  position: relative;
+  top: 8px;
+  left: 9px;
+}
+
+.p2 {
+  background-color: #364144;
+  transition: all 1000ms ease-in;
+}
+.p2::before {
+  content: url(moon.svg);
+  background-size: cover;
+  position: relative;
+  top: 8px;
+  left: 9px;
+}
+
+.star-cursor {
+  cursor: url("star-cursor.svg"), pointer;
+}
+
+.moon-cursor {
+  cursor: url("moon-cursor.svg"), pointer;
+}
