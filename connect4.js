@@ -22,30 +22,26 @@ class Game {
   }
 
   makeHtmlBoard() {
-    const body = document.getElementById("body");
-    const container = document.querySelector("#container");
-    const board = document.getElementById("game-board");
-
+    const body = document.querySelector("body");
     body.classList.add("star-cursor");
+    document.querySelector("#app-container").innerHTML = "";
+    const container = document.querySelector("#app-container");
 
-    // make column tops (clickable area for adding a piece to that column)
+    const board = document.createElement("table");
+    board.setAttribute("id", "game-board");
+
     const top = document.createElement("tr");
-    top.setAttribute("id", "column-top");
-    //create a variable containing a bound version of handleClick so I can pass it to the removeEventListener and have it work,
-    //otherwise they are not the same function
     top.addEventListener("click", this.boundHandleClick, true);
-
+    top.setAttribute("id", "column-top");
     for (let x = 0; x < this.columns; x++) {
       const headCell = document.createElement("td");
       headCell.setAttribute("class", x);
 
-      top.append(headCell);
+      top.appendChild(headCell);
     }
-    //used a braile space character to move the text right, so its not covered by the cursor icon
-    board.setAttribute("title", "⠀⠀⠀⠀⠀Click on an ↓ arrow to drop your token");
-    container.append(top);
 
-    // make main part of board
+    container.appendChild(top);
+
     for (let y = 0; y < this.rows; y++) {
       const row = document.createElement("tr");
 
@@ -57,6 +53,28 @@ class Game {
 
       board.append(row);
     }
+    container.appendChild(board);
+  }
+
+  resetGame() {
+    this.board = [];
+    this.makeBoard();
+    this.makeHtmlBoard();
+  }
+
+  addReplayBtn() {
+    const container = document.querySelector("#app-container");
+    const replayBtn = document.createElement("button");
+    replayBtn.setAttribute("id", "replay-btn");
+    replayBtn.addEventListener("click", this.resetGame.bind(this));
+
+    const replayIcon = document.createElement("img");
+    replayIcon.src = "replay.svg";
+    replayIcon.alt = "Replay";
+
+    replayBtn.appendChild(replayIcon);
+
+    container.appendChild(replayBtn);
   }
 
   placeInTable(y, x, evt) {
@@ -86,7 +104,8 @@ class Game {
       alert(msg);
     }, 100);
 
-    document.getElementById("body").style.cursor = "default";
+    // document.getElementById("body").style.cursor = "default";
+    this.addReplayBtn();
   }
 
   findSpotForCol(x) {

@@ -10,38 +10,14 @@ body {
   overflow: hidden;
 }
 
-#title-text {
-  position: absolute;
-  top: 80%;
-
-  display: flex;
-  flex-direction: row;
-  z-index: 1000;
-}
-
-#title-text q {
-  font-size: 3.6rem;
-  margin-bottom: 0;
-  color: #e507ab;
-}
-
-#title-text cite,
-q {
-  color: #364144;
-  display: inline-block;
-}
-
-#title-text cite {
-  align-self: flex-end;
-}
-
-#container {
+#app-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
+
 #game-board {
   width: fit-content;
   height: fit-content;
@@ -54,14 +30,16 @@ q {
   padding: 13px;
   border-radius: 25px;
 }
+
 #game-board td {
   display: inline-block;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   padding: 0;
   margin: 6px;
-  background-color: white;
+  background-color: rgb(155, 222, 255);
+  box-shadow: inset 2px 2px 10px rgba(128, 128, 128, 0.616);
 }
 
 #column-top td {
@@ -72,7 +50,7 @@ q {
   position: relative;
   top: -60px;
   padding: 0;
-  margin: 0 6px;
+  margin: 70px 8px 0 8px;
 }
 
 #column-top td::before {
@@ -83,6 +61,25 @@ q {
   top: 6px;
 }
 
+#replay-btn {
+  position: relative;
+  top: -30px;
+  background-color: transparent;
+  border: none;
+  padding: 1px 30px;
+  border-radius: 5px;
+}
+
+#replay-btn img {
+  width: 70px;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 60px;
+}
+
+#replay-btn img:hover {
+  background-color: rgba(248, 243, 97);
+  cursor: pointer;
+}
 .piece {
   width: 50px;
   height: 50px;
@@ -91,7 +88,6 @@ q {
 
 .p1 {
   background-color: #e507ab;
-  transition: all 200ms ease-in;
 }
 
 .p1::before {
@@ -103,7 +99,6 @@ q {
 
 .p2 {
   background-color: #364144;
-  transition: all 1000ms ease-in;
 }
 .p2::before {
   content: url(moon.svg);
